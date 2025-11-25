@@ -1,6 +1,6 @@
 const express = require('express');
-const connetDatabase = require('./config/database');
-const apiRoute = require('./routes/apiRoute');
+const connetDatabase = require('./config/db');
+// const apiRoute = require('./routes/apiRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
