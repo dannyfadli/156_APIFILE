@@ -16,5 +16,29 @@ async function createKomik(database, komikData) {
     imageData: imageData || null,
     });
 
-return newKomik;
+    return newKomik;
+}
+async function getAllKomik(database) {
+    const komiks = await database.Komik.findAll();
+
+
+    return komiks.map(k => {
+        if (k.imageData) {
+            k.imageData = k.imageData.toString('base64');
+        }
+        return k;
+    });
+}
+
+async function getKomikById(database, id) {
+    const komik = await database.Komik.findByPk(id);
+    if (!komik) throw new Error('Komik tidak ditemukan');
+
+
+    if (komik.imageData) {
+    komik.imageData = komik.imageData.toString('base64');
+    }
+
+
+    return komik;
 }
